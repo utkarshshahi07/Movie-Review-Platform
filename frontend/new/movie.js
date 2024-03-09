@@ -32,135 +32,46 @@ main.appendChild(div_new)
 
 returnReviews(APILINK);
 
-// function returnReviews(url) {
-//   fetch(url + "movie/" + movieId).then(res => res.json())
-//     .then(function (data) {
-//       console.log(data);
-//       data.forEach(review => {
-//         const div_card = document.createElement('div');
-//         div_card.innerHTML = `
-//           <div class="row">
-//             <div class="column">
-//               <div class="card" id="${review._id}">
-//                 <p><strong>Review: </strong>${review.review}</p>
-//                 <p><strong>User: </strong>${review.user}</p>
-//                 <p><a href="#"onclick="editReview('${review._id}','${review.review}', '${review.user}')">✏️</a> <a href="#" onclick="deleteReview('${review._id}')">🗑</a></p>
-//               </div>
-//             </div>
-//           </div>
-//         `
-
-//         main.appendChild(div_card);
-//       });
-//     });
-// }
-
-// function editReview(id, review, user) {
-
-//   const element = document.getElementById(id);
-//   const reviewInputId = "review" + id
-//   const userInputId = "user" + id
-
-//   element.innerHTML = `
-//               <p><strong>Review: </strong>
-//                 <input type="text" id="${reviewInputId}" value="${review}">
-//               </p>
-//               <p><strong>User: </strong>
-//                 <input type="text" id="${userInputId}" value="${user}">
-//               </p>
-//               <p><a href="#" onclick="saveReview('${reviewInputId}', '${userInputId}', '${id}',)">💾</a>
-//               </p>
-  
-//   `
-// }
-
-// function editReview(id, review, user) {
-//   const element = document.getElementById(id);
-//   const reviewInputId = "review" + id;
-//   const userInputId = "user" + id;
-
-//   element.innerHTML = `
-//     <p><strong>Review: </strong>
-//       <input type="text" id="${reviewInputId}" value="${review}">
-//     </p>
-//     <p><strong>User: </strong>
-//       <input type="text" id="${userInputId}" value="${user}">
-//     </p>
-//     <p><a href="#" onclick="saveReview('${reviewInputId}', '${userInputId}', '${id}'); return false;">💾</a></p>
-//   `;
-// }
-
-
-// function saveReview(reviewInputId, userInputId, id = "") {
-//   const review = document.getElementById(reviewInputId).value;
-//   const user = document.getElementById(userInputId).value;
-
-//   if (id) {
-//     fetch(APILINK + id, {
-//       method: 'PUT',
-//       headers: {
-//         'Accept': 'application/json, text/plain, */*',
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify({ "user": user, "review": review })
-//     }).then(res => res.json())
-//       .then(res => {
-//         console.log(res)
-//         location.reload();
-//       });
-//   } else {
-//     fetch(APILINK + "new", {
-//       method: 'POST',
-//       headers: {
-//         'Accept': 'application/json, text/plain, */*',
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify({ "user": user, "review": review, "movieId": movieId })
-//     }).then(res => res.json())
-//       .then(res => {
-//         console.log(res)
-//         location.reload();
-//       });
-//   }
-// }
-
-// function deleteReview(id) {
-//   fetch(APILINK + id, {
-//     method: 'DELETE'
-//   }).then(res => res.json())
-//     .then(res => {
-//       console.log(res)
-//       location.reload();
-//     });
-// }
-
-
 function returnReviews(url) {
-  fetch(url + "movie/" + movieId)
-    .then(res => res.json())
+  fetch(url + "movie/" + movieId).then(res => res.json())
     .then(function (data) {
-      console.log("Data received:", data);
-      if (Array.isArray(data)) {
-        data.forEach(review => {
-          const div_card = document.createElement('div');
-          div_card.innerHTML = `
-            <div class="row">
-              <div class="column">
-                <div class="card" id="${review._id}">
-                  <p><strong>Review: </strong>${review.review}</p>
-                  <p><strong>User: </strong>${review.user}</p>
-                  <p><a href="#" onclick="editReview('${review._id}','${review.review}', '${review.user}'); return false;">✏️</a> <a href="#" onclick="deleteReview('${review._id}'); return false;">🗑</a></p>
-                </div>
+      console.log(data);
+      data.forEach(review => {
+        const div_card = document.createElement('div');
+        div_card.innerHTML = `
+          <div class="row">
+            <div class="column">
+              <div class="card" id="${review._id}">
+                <p><strong>Review: </strong>${review.review}</p>
+                <p><strong>User: </strong>${review.user}</p>
+                <p><a href="#"onclick="editReview('${review._id}','${review.review}', '${review.user}')">✏️</a> <a href="#" onclick="deleteReview('${review._id}')">🗑</a></p>
               </div>
             </div>
-          `;
-          main.appendChild(div_card);
-        });
-      } else {
-        console.error("Data received is not an array:", data);
-      }
-    })
-    .catch(error => console.error("Error fetching reviews:", error));
+          </div>
+        `
+
+        main.appendChild(div_card);
+      });
+    });
+}
+
+function editReview(id, review, user) {
+
+  const element = document.getElementById(id);
+  const reviewInputId = "review" + id
+  const userInputId = "user" + id
+
+  element.innerHTML = `
+              <p><strong>Review: </strong>
+                <input type="text" id="${reviewInputId}" value="${review}">
+              </p>
+              <p><strong>User: </strong>
+                <input type="text" id="${userInputId}" value="${user}">
+              </p>
+              <p><a href="#" onclick="saveReview('${reviewInputId}', '${userInputId}', '${id}',)">💾</a>
+              </p>
+  
+  `
 }
 
 function editReview(id, review, user) {
@@ -179,6 +90,7 @@ function editReview(id, review, user) {
   `;
 }
 
+
 function saveReview(reviewInputId, userInputId, id = "") {
   const review = document.getElementById(reviewInputId).value;
   const user = document.getElementById(userInputId).value;
@@ -193,10 +105,9 @@ function saveReview(reviewInputId, userInputId, id = "") {
       body: JSON.stringify({ "user": user, "review": review })
     }).then(res => res.json())
       .then(res => {
-        console.log(res);
+        console.log(res)
         location.reload();
-      })
-      .catch(error => console.error("Error updating review:", error));
+      });
   } else {
     fetch(APILINK + "new", {
       method: 'POST',
@@ -207,10 +118,9 @@ function saveReview(reviewInputId, userInputId, id = "") {
       body: JSON.stringify({ "user": user, "review": review, "movieId": movieId })
     }).then(res => res.json())
       .then(res => {
-        console.log(res);
+        console.log(res)
         location.reload();
-      })
-      .catch(error => console.error("Error creating review:", error));
+      });
   }
 }
 
@@ -219,11 +129,7 @@ function deleteReview(id) {
     method: 'DELETE'
   }).then(res => res.json())
     .then(res => {
-      console.log(res);
+      console.log(res)
       location.reload();
-    })
-    .catch(error => console.error("Error deleting review:", error));
+    });
 }
-
-// Call the function to fetch and display reviews
-returnReviews(APILINK);
