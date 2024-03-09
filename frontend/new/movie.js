@@ -59,7 +59,7 @@ function returnReviews(url) {
   fetch(url + "movie/" + movieId)
     .then(res => res.json())
     .then(function (data) {
-      console.log(data);
+      console.log("Data received:", data);
       if (Array.isArray(data)) {
         data.forEach(review => {
           const div_card = document.createElement('div');
