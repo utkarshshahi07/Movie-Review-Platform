@@ -32,47 +32,93 @@ main.appendChild(div_new)
 
 returnReviews(APILINK);
 
+// function returnReviews(url) {
+//   fetch(url + "movie/" + movieId).then(res => res.json())
+//     .then(function (data) {
+//       console.log(data);
+//       data.forEach(review => {
+//         const div_card = document.createElement('div');
+//         div_card.innerHTML = `
+//           <div class="row">
+//             <div class="column">
+//               <div class="card" id="${review._id}">
+//                 <p><strong>Review: </strong>${review.review}</p>
+//                 <p><strong>User: </strong>${review.user}</p>
+//                 <p><a href="#"onclick="editReview('${review._id}','${review.review}', '${review.user}')">✏️</a> <a href="#" onclick="deleteReview('${review._id}')">🗑</a></p>
+//               </div>
+//             </div>
+//           </div>
+//         `
+
+//         main.appendChild(div_card);
+//       });
+//     });
+// }
+
 function returnReviews(url) {
-  fetch(url + "movie/" + movieId).then(res => res.json())
+  fetch(url + "movie/" + movieId)
+    .then(res => res.json())
     .then(function (data) {
       console.log(data);
-      data.forEach(review => {
-        const div_card = document.createElement('div');
-        div_card.innerHTML = `
-          <div class="row">
-            <div class="column">
-              <div class="card" id="${review._id}">
-                <p><strong>Review: </strong>${review.review}</p>
-                <p><strong>User: </strong>${review.user}</p>
-                <p><a href="#"onclick="editReview('${review._id}','${review.review}', '${review.user}')">✏️</a> <a href="#" onclick="deleteReview('${review._id}')">🗑</a></p>
+      if (Array.isArray(data)) {
+        data.forEach(review => {
+          const div_card = document.createElement('div');
+          div_card.innerHTML = `
+            <div class="row">
+              <div class="column">
+                <div class="card" id="${review._id}">
+                  <p><strong>Review: </strong>${review.review}</p>
+                  <p><strong>User: </strong>${review.user}</p>
+                  <p><a href="#"onclick="editReview('${review._id}','${review.review}', '${review.user}')">✏️</a> <a href="#" onclick="deleteReview('${review._id}')">🗑</a></p>
+                </div>
               </div>
             </div>
-          </div>
-        `
-
-        main.appendChild(div_card);
-      });
-    });
+          `;
+          main.appendChild(div_card);
+        });
+      } else {
+        console.error("Data received is not an array:", data);
+      }
+    })
+    .catch(error => console.error("Error fetching reviews:", error));
 }
+
+
+// function editReview(id, review, user) {
+
+//   const element = document.getElementById(id);
+//   const reviewInputId = "review" + id
+//   const userInputId = "user" + id
+
+//   element.innerHTML = `
+//               <p><strong>Review: </strong>
+//                 <input type="text" id="${reviewInputId}" value="${review}">
+//               </p>
+//               <p><strong>User: </strong>
+//                 <input type="text" id="${userInputId}" value="${user}">
+//               </p>
+//               <p><a href="#" onclick="saveReview('${reviewInputId}', '${userInputId}', '${id}',)">💾</a>
+//               </p>
+  
+//   `
+// }
 
 function editReview(id, review, user) {
-
   const element = document.getElementById(id);
-  const reviewInputId = "review" + id
-  const userInputId = "user" + id
+  const reviewInputId = "review" + id;
+  const userInputId = "user" + id;
 
   element.innerHTML = `
-              <p><strong>Review: </strong>
-                <input type="text" id="${reviewInputId}" value="${review}">
-              </p>
-              <p><strong>User: </strong>
-                <input type="text" id="${userInputId}" value="${user}">
-              </p>
-              <p><a href="#" onclick="saveReview('${reviewInputId}', '${userInputId}', '${id}',)">💾</a>
-              </p>
-  
-  `
+    <p><strong>Review: </strong>
+      <input type="text" id="${reviewInputId}" value="${review}">
+    </p>
+    <p><strong>User: </strong>
+      <input type="text" id="${userInputId}" value="${user}">
+    </p>
+    <p><a href="#" onclick="saveReview('${reviewInputId}', '${userInputId}', '${id}'); return false;">💾</a></p>
+  `;
 }
+
 
 function saveReview(reviewInputId, userInputId, id = "") {
   const review = document.getElementById(reviewInputId).value;
