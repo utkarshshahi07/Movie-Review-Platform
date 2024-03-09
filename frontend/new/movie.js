@@ -2,7 +2,7 @@ const url = new URL(location.href);
 const movieId = url.searchParams.get("id")
 const movieTitle = url.searchParams.get("title")
 
-const APILINK = 'movie.html/api/v1/reviews/';
+const APILINK = 'https://movie-review-site-k8fi.vercel.app/';
 
 
 const main = document.getElementById("section");
