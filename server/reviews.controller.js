@@ -8,8 +8,7 @@ export default class ReviewsController {
                 status: "success",
                 movieId: movieId,
                 user: user,
-                review: review,
-                id: _id
+                review: review
             })
             const reviewResponse = await ReviewsDAO.addReview(
                 movieId,
