@@ -34,7 +34,7 @@ main.appendChild(div_new)
 returnReviews(APILINK);
 
 function returnReviews(url) {
-  fetch(`${url}/movie/${movieId}`).then(res => res.json())
+  fetch(`${APILINK}movie/${movieId}`).then(res => res.json())
     .then(function (data) {
       console.log(data);
       data.forEach(review => {
