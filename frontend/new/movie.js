@@ -33,7 +33,7 @@ main.appendChild(div_new)
 
 returnReviews(APILINK);
 
-function returnReviews(url) {
+function returnReviews(APILINK,movieId) {
   fetch(`${APILINK}movie/${movieId}`).then(res => res.json())
     .then(function (data) {
       console.log(data);
@@ -87,7 +87,7 @@ function editReview(id, review, user) {
     <p><strong>User: </strong>
       <input type="text" id="${userInputId}" value="${user}">
     </p>
-    <p><a href="#" onclick="saveReview('${reviewInputId}', '${userInputId}', '${id}'); return false;">💾</a></p>
+    <p><a href="#" onclick="saveReview('${reviewInputId}', '${userInputId}', '${id}');">💾</a></p>
   `;
 }
 
