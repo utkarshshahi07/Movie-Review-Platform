@@ -37,7 +37,7 @@ function returnReviews(url) {
   fetch(`${APILINK}movie/${movieId}`).then(res => res.json())
     .then(function (data) {
       console.log(data);
-      data.forEach(review => {
+      data.array.forEach(review => {
         const div_card = document.createElement('div');
         div_card.innerHTML = `
           <div class="row">
