@@ -4,6 +4,8 @@ const movieTitle = url.searchParams.get("title")
 
 const APILINK = 'https://movie-review-site-k8fi.vercel.app/api/v1/reviews/';
 
+console.log(url);
+
 const main = document.getElementById("section");
 const title = document.getElementById("title");
 
@@ -32,7 +34,7 @@ main.appendChild(div_new)
 returnReviews(APILINK);
 
 function returnReviews(url) {
-  fetch(`${url}movie/${movieId}`).then(res => res.json())
+  fetch(`${url}/movie/${movieId}`).then(res => res.json())
     .then(function (data) {
       console.log(data);
       data.forEach(review => {
@@ -57,8 +59,8 @@ function returnReviews(url) {
 function editReview(id, review, user) {
 
   const element = document.getElementById(id);
-  const reviewInputId = `"review"${id}`
-  const userInputId = `"user"${id}`
+  const reviewInputId = "review" + id
+  const userInputId = "user" + id
 
   element.innerHTML = `
               <p><strong>Review: </strong>
@@ -73,12 +75,29 @@ function editReview(id, review, user) {
   `
 }
 
+function editReview(id, review, user) {
+  const element = document.getElementById(id);
+  const reviewInputId = "review" + id;
+  const userInputId = "user" + id;
+
+  element.innerHTML = `
+    <p><strong>Review: </strong>
+      <input type="text" id="${reviewInputId}" value="${review}">
+    </p>
+    <p><strong>User: </strong>
+      <input type="text" id="${userInputId}" value="${user}">
+    </p>
+    <p><a href="#" onclick="saveReview('${reviewInputId}', '${userInputId}', '${id}'); return false;">💾</a></p>
+  `;
+}
+
+
 function saveReview(reviewInputId, userInputId, id = "") {
   const review = document.getElementById(reviewInputId).value;
   const user = document.getElementById(userInputId).value;
 
   if (id) {
-    fetch(`${APILINK}${id}`, {
+    fetch(APILINK + id, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json, text/plain, */*',
@@ -91,7 +110,7 @@ function saveReview(reviewInputId, userInputId, id = "") {
         location.reload();
       });
   } else {
-    fetch(`${APILINK}"new"`, {
+    fetch(APILINK + "new", {
       method: 'POST',
       headers: {
         'Accept': 'application/json, text/plain, */*',
@@ -107,7 +126,7 @@ function saveReview(reviewInputId, userInputId, id = "") {
 }
 
 function deleteReview(id) {
-  fetch(`${APILINK}${id}`, {
+  fetch(APILINK + id, {
     method: 'DELETE'
   }).then(res => res.json())
     .then(res => {
