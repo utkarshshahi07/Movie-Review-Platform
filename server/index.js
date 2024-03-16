@@ -5,7 +5,7 @@ import ReviewsDAO from "./reviews.DAO.js";
 
 const port = 9000;
 
-const url = "mongodb+srv://kushalpatel0265:Kushal2018@cluster0.b0nwiel.mongodb.net/"
+const url = "mongodb+srv://<username>:<password>@cluster0.b0nwiel.mongodb.net/"
 MongoClient.connect(url)
     .then(client => {
         const result =  ReviewsDAO.injectDB(client);
