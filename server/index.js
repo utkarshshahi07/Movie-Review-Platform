@@ -6,7 +6,11 @@ import ReviewsDAO from "./reviews.DAO.js";
 const port = 9000;
 
 const url = "mongodb+srv://kushalpatel0265:1234@cluster0.b0nwiel.mongodb.net";
-MongoClient.connect(url)
+MongoClient.connect(url,{
+    maxPoolSize: 50,
+    wtimeoutMS: 2500,
+    useNewUrlParser: true
+  })
     .then(client => {
         const result =  ReviewsDAO.injectDB(client);
         if(result){

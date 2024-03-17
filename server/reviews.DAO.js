@@ -70,7 +70,7 @@ export default class ReviewsDAO {
 
   static async getReviewsByMovieId(movieId) {
     try {
-      const cursor = await reviews.find({ movieId : movieId })
+      const cursor = await reviews.find({ movieId : parseInt(movieId) })
       return await cursor.toArray()
     } catch (e) {
       console.error(`Unable to get review: ${e}`)
