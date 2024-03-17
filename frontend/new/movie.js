@@ -34,10 +34,10 @@ main.appendChild(div_new)
 returnReviews(APILINK);
 
 function returnReviews(APILINK,movieId) {
-  fetch(`${APILINK}movie/${movieId}`).then(res => res.json())
+  fetch(url + "movie/" + movieId).then(res => res.json())
     .then(function (data) {
       console.log(data);
-      data.array.map(review => {
+      data.forEach(review => {
         const div_card = document.createElement('div');
         div_card.innerHTML = `
           <div class="row">
