@@ -15,15 +15,14 @@ div_new.innerHTML = `
   <div class="row">
     <div class="column">
       <div class="card">
-          New Review
-          <p><strong>Review: </strong>
-            <input type="text" id="new_review" value="">
-          </p>
-          <p><strong>User: </strong>
-            <input type="text" id="new_user" value="">
-          </p>
-          <p><a href="#" onclick="saveReview('new_review', 'new_user')">💾</a>
-          </p>
+        New Review
+        <p><strong>Review: </strong>
+          <input type="text" id="new_review" value="">
+        </p>
+        <p><strong>User: </strong>
+          <input type="text" id="new_user" value="">
+        </p>
+        <button onclick="saveReview('new_review', 'new_user')">Save</button>
       </div>
     </div>
   </div>
@@ -44,7 +43,8 @@ function returnReviews(url){
               <div class="card" id="${review._id}">
                 <p><strong>Review: </strong>${review.review}</p>
                 <p><strong>User: </strong>${review.user}</p>
-                <p><a href="#"onclick="editReview('${review._id}','${review.review}', '${review.user}')">✏️</a> <a href="#" onclick="deleteReview('${review._id}')">🗑</a></p>
+                <button onclick="editReview('${review._id}','${review.review}', '${review.user}')">Edit</button> 
+                <button onclick="deleteReview('${review._id}')">Delete</button>
               </div>
             </div>
           </div>
@@ -62,15 +62,13 @@ function editReview(id, review, user) {
   const userInputId = "user" + id
   
   element.innerHTML = `
-              <p><strong>Review: </strong>
-                <input type="text" id="${reviewInputId}" value="${review}">
-              </p>
-              <p><strong>User: </strong>
-                <input type="text" id="${userInputId}" value="${user}">
-              </p>
-              <p><a href="#" onclick="saveReview('${reviewInputId}', '${userInputId}', '${id}',)">💾</a>
-              </p>
-  
+    <p><strong>Review: </strong>
+      <input type="text" id="${reviewInputId}" value="${review}">
+    </p>
+    <p><strong>User: </strong>
+      <input type="text" id="${userInputId}" value="${user}">
+    </p>
+    <button onclick="saveReview('${reviewInputId}', '${userInputId}', '${id}')">Save</button>
   `
 }
 
