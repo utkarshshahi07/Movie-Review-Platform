@@ -22,7 +22,7 @@ Follow these instructions to set up and run a movie-review-site project on your 
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/MovieReviewSite.git
+   git clone https://github.com/kushalpatel0265/movie-review-site.git
 2. Navigate to the project directory:
    ```bash
    cd MovieReviewSite
