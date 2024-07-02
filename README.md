@@ -43,3 +43,4 @@ Contributions to this project are welcome! Please fork the repository and submit
 ## Contact
 - Gmail: kushalpatel0265@gmail.com
 - Project Link: https://github.com/kushalpatel0265/movie-review-site
+- Deployment Link: https://movie-review-site.vercel.app/
