@@ -1,4 +1,4 @@
-# [[Movie Review Website]](https://movie-review-site.vercel.app/)
+# [Movie Review Website](https://movie-review-site.vercel.app/)
 
 ## Introduction
 The Movie Review Website offers a dynamic platform for users to explore, review, and discuss movies. It integrates front-end and back-end technologies to provide a seamless user experience for movie enthusiasts.
