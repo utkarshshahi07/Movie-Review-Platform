@@ -31,4 +31,21 @@ Follow these steps to run the project on your local machine:
 1. **Clone the repository**
    ```bash
    git clone https://github.com/utkarshshahi07/Movie-Review-Platform.git
+2. **Navigate into the project folder**
+   ```bash
+   cd Movie-Review-Platform
+3. **Install dependencies**
+   ```bash
+   npm install cors dotenv express mongodb mongoose mongoose-aggregate-paginate-v2
+   npm install nodemon -D
+
+###▶️ Usage
+
+Start the server:
+```bash
+npm run dev
+
+
+
+
 
